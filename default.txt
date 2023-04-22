@@ -1,0 +1,3 @@
+default user
+email: admin@email.com
+password : default_password

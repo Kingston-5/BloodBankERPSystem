@@ -1,0 +1,155 @@
+:root {
+    --red-1 : #d9318e; /* vermilion */
+    --red-2 : #9b111e; /* ruby red */
+    --red-3 : #750000; /* barn red*/
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Homepage*/
+/* Landing Area */
+.landingarea{
+    background: url(/img/home-img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.landingarea .container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.landingarea .main {
+    text-align: center;
+    opacity: 100%;
+}
+
+.main h3{
+    color: var(--red-1);
+}
+
+.main h2{
+    color: var(--red-2);
+}
+
+.main h1{
+    color: var(--red-3);
+}
+/* statsarea */
+.statsarea{
+    margin: 1rem;
+    padding: 1rem;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statsarea .container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.table th, .table td{
+    padding: rem;
+}
+/* profile page */
+.profilearea .main{
+    margin: 1rem;
+    padding: 1rem;
+    text-align: start;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-evenly;
+}
+.cards{
+    margin: 1rem;
+    padding: 1rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card{
+    margin: 1rem;
+    width: 20rem;
+    height: auto;
+}
+
+.card .btn{
+    margin: .5rem;
+}
+
+/* appointmant area */
+
+.appointmentarea {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+.appointmentarea .container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+.appointmentarea .main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/*admin area*/
+
+.adminarea {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+.adminarea .container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+.adminarea .main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    
+}

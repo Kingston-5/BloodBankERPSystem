@@ -10,11 +10,12 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <title><?php echo $this->title ?></title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="/">ONLINE BLOOD BANK SYSTEM</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,22 +38,22 @@
         if (Application::isGuest()): ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/auth/login">Login</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/auth/register">Register</a>
                 </li>
             </ul>
         <?php else: ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/profile">
-                        Profile
+                    <a class="nav-link" href="/profile/<?php echo Application::$app->user->getId(); ?>">
+                        <?php echo Application::$app->user->getDisplayName() ?> 
                     </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/logout">
-                        Welcome <?php echo Application::$app->user->getDisplayName() ?> (Logout)
+                    <a class="nav-link" href="/auth/logout">
+                        Logout
                     </a>
                 </li>
             </ul>
@@ -60,14 +61,14 @@
     </div>
 </nav>
 
-<div class="container">
+
     <?php if (Application::$app->session->getFlash('success')): ?>
         <div class="alert alert-success">
             <p><?php echo Application::$app->session->getFlash('success') ?></p>
         </div>
     <?php endif; ?>
     {{content}}
-</div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

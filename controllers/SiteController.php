@@ -1,12 +1,6 @@
 <?php
-/**
- * User: TheCodeholic
- * Date: 7/8/2020
- * Time: 8:43 AM
- */
 
 namespace app\controllers;
-
 
 use thecodeholic\phpmvc\Application;
 use thecodeholic\phpmvc\Controller;
@@ -15,13 +9,18 @@ use thecodeholic\phpmvc\Request;
 use thecodeholic\phpmvc\Response;
 use app\models\LoginForm;
 use app\models\User;
+use app\models\Donor;
+use app\models\DonorCenter;
+use app\models\Appointment;
+use app\models\BloodUnit;
+use app\models\BloodClerk;
+use app\models\Order;
 
-/**
- * Class SiteController
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package app\controllers
- */
+
+/** SiteController class
+* controls the sites genneral functions that do not require special 
+* access or permissions
+*/
 class SiteController extends Controller
 {
     public function __construct()
@@ -31,52 +30,29 @@ class SiteController extends Controller
 
     public function home()
     {
+    	
+        $userModel = new User();
+        $donorCenterModel = new DonorCenter();
+        $appointmentModel = new Appointment();
+        $bloodModel = new BloodUnit();
+        
+        
+        $userModel = $userModel->getAll();
+        $donorCenterModel = $donorCenterModel->getAll();
+        $appointmentModel = $appointmentModel->getAll();
+        $bloodModel = $bloodModel->getAll();
+        
         return $this->render('home', [
-            'name' => 'TheCodeholic'
+            'users' => $userModel,
+            'donorCenters' => $donorCenterModel,
+            'appointments' => $appointmentModel,
+            'Donations' => $bloodModel
         ]);
     }
-
-    public function login(Request $request)
+    
+    public function about()
     {
-        echo '<pre>';
-        var_dump($request->getBody(), $request->getRouteParam('id'));
-        echo '</pre>';
-        $loginForm = new LoginForm();
-        if ($request->getMethod() === 'post') {
-            $loginForm->loadData($request->getBody());
-            if ($loginForm->validate() && $loginForm->login()) {
-                Application::$app->response->redirect('/');
-                return;
-            }
-        }
-        $this->setLayout('auth');
-        return $this->render('login', [
-            'model' => $loginForm
-        ]);
-    }
-
-    public function register(Request $request)
-    {
-        $registerModel = new User();
-        if ($request->getMethod() === 'post') {
-            $registerModel->loadData($request->getBody());
-            if ($registerModel->validate() && $registerModel->save()) {
-                Application::$app->session->setFlash('success', 'Thanks for registering');
-                Application::$app->response->redirect('/');
-                return 'Show success page';
-            }
-
-        }
-        $this->setLayout('auth');
-        return $this->render('register', [
-            'model' => $registerModel
-        ]);
-    }
-
-    public function logout(Request $request, Response $response)
-    {
-        Application::$app->logout();
-        $response->redirect('/');
+        return $this->render('about');
     }
 
     public function contact()
@@ -84,15 +60,4 @@ class SiteController extends Controller
         return $this->render('contact');
     }
 
-    public function profile()
-    {
-        return $this->render('profile');
-    }
-
-    public function profileWithId(Request $request)
-    {
-        echo '<pre>';
-        var_dump($request->getBody());
-        echo '</pre>';
-    }
 }
